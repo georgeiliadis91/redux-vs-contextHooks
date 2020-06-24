@@ -14,17 +14,7 @@ export const cartReducer = (state, action) => {
 
 //FUNCTIONS
 const addItem = (state, id) => {
-	let found = false;
-
 	const exists = state.find((item) => item.id == id);
-
-	console.log('exists', exists);
-	// state.forEach((element, index) => {
-	// 	if (element.id === id) {
-	// 		found = true;
-	// 		element.amount++;
-	// 	}
-	// });
 
 	if (!exists) {
 		return (state = [...state, { id: id, amount: 1 }]);
@@ -34,8 +24,6 @@ const addItem = (state, id) => {
 		});
 		return (state = [...data, { id: exists.id, amount: exists.amount + 1 }]);
 	}
-
-	// return state;
 };
 
 const removeItem = (state, id) => {
