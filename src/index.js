@@ -6,10 +6,12 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Globalstate from './context/Globalstate';
 
 ReactDOM.render(
-	<Router>
-		<Globalstate>
-			<App />
-		</Globalstate>
-	</Router>,
+	<React.StrictMode>
+		<Router>
+			<Globalstate>
+				<App />
+			</Globalstate>
+		</Router>
+	</React.StrictMode>,
 	document.getElementById('root')
 );

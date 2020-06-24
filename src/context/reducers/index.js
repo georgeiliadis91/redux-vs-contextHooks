@@ -16,18 +16,26 @@ export const cartReducer = (state, action) => {
 const addItem = (state, id) => {
 	let found = false;
 
-	state.forEach((element, index) => {
-		if (element.id === id) {
-			element.amount++;
-			found = true;
-		}
-	});
+	const exists = state.find((item) => item.id == id);
 
-	if (!found) {
-		state = [...state, { id: id, amount: 1 }];
+	console.log('exists', exists);
+	// state.forEach((element, index) => {
+	// 	if (element.id === id) {
+	// 		found = true;
+	// 		element.amount++;
+	// 	}
+	// });
+
+	if (!exists) {
+		return (state = [...state, { id: id, amount: 1 }]);
+	} else {
+		const data = state.filter((prod) => {
+			return prod.id != id;
+		});
+		return (state = [...data, { id: exists.id, amount: exists.amount + 1 }]);
 	}
 
-	return state;
+	// return state;
 };
 
 const removeItem = (state, id) => {
