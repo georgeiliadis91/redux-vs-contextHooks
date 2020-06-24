@@ -1,13 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeProduct } from '../actions';
 
-export default function Cart({ prodCart, setProdCart }) {
+export default function Cart() {
+	const dispatch = useDispatch();
+
+	const products = useSelector((state) => {
+		return state.products;
+	});
+
 	const removeItem = (id) => {
-		const arr = prodCart.filter((product) => {
-			return product.id !== id;
-		});
-
-		setProdCart(arr);
+		dispatch(removeProduct(id));
 	};
 
 	return (
@@ -17,11 +21,17 @@ export default function Cart({ prodCart, setProdCart }) {
 			</Link>
 			<h2>Cart</h2>
 			<ul>
-				{prodCart.map((product, index) => {
+				{products.map((product, index) => {
 					return (
 						<li key={index}>
 							ID: {product.id} - Amount: {product.amount} -
-							<button onClick={() => removeItem(product.id)}>Remove</button>
+							<button
+								onClick={() => {
+									removeItem(product.id);
+								}}
+							>
+								Remove
+							</button>
 						</li>
 					);
 				})}

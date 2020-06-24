@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../actions';
 
 const products = [
 	{ id: 1, name: 'lg', price: 50 },
@@ -8,22 +10,10 @@ const products = [
 ];
 
 export default function Home({ prodCart, setProdCart }) {
+	const dispatch = useDispatch();
+
 	const addItem = (id) => {
-		let arr = prodCart;
-		let found = false;
-
-		arr.forEach((element, index) => {
-			if (element.id === id) {
-				element.amount++;
-				found = true;
-			}
-		});
-
-		if (!found) {
-			arr = [...arr, { id: id, amount: 1 }];
-		}
-
-		setProdCart(arr);
+		dispatch(addProduct(id));
 	};
 
 	return (
