@@ -3,6 +3,7 @@ import { ADD_PRODUCT, REMOVE_PRODUCT } from '../actions';
 export const cartReducer = (state, action) => {
 	switch (action.type) {
 		case ADD_PRODUCT:
+			console.log('run');
 			return addItem(state, action.payload);
 		case REMOVE_PRODUCT:
 			return removeItem(state, action.payload);

@@ -8,6 +8,7 @@ export default function Globalstate(props) {
 	const [cart, dispatch] = useReducer(cartReducer, []);
 
 	const addProduct = (id) => {
+		console.log('clicked');
 		dispatch({ type: ADD_PRODUCT, payload: id });
 	};
 
