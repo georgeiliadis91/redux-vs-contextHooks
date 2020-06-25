@@ -22,6 +22,7 @@ const addItem = (state, id) => {
 		const data = state.filter((prod) => {
 			return prod.id != id;
 		});
+
 		return (state = [...data, { id: exists.id, amount: exists.amount + 1 }]);
 	}
 };
