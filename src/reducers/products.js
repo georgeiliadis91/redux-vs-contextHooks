@@ -13,20 +13,17 @@ const productReducer = (state = [], action) => {
 
 // Reducer Functions - Could probably use their own folder
 const addItem = (state, id) => {
-	let found = false;
+	const exists = state.find((item) => item.id == id);
 
-	state.forEach((element, index) => {
-		if (element.id === id) {
-			element.amount++;
-			found = true;
-		}
-	});
+	if (!exists) {
+		return (state = [...state, { id: id, amount: 1 }]);
+	} else {
+		const data = state.filter((prod) => {
+			return prod.id != id;
+		});
 
-	if (!found) {
-		state = [...state, { id: id, amount: 1 }];
+		return (state = [...data, { id: exists.id, amount: exists.amount + 1 }]);
 	}
-
-	return state;
 };
 
 const removeItem = (state, id) => {
