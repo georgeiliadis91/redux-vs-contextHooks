@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 import { cartReducer } from './reducers';
-import { ADD_PRODUCT, REMOVE_PRODUCT } from './actions';
+import { addProductAction, removeProductAction } from './actions';
 
 export const CartContext = createContext();
 
@@ -9,11 +9,11 @@ export default function Globalstate(props) {
 
 	const addProduct = (id) => {
 		console.log('clicked');
-		dispatch({ type: ADD_PRODUCT, payload: id });
+		dispatch(addProductAction(id));
 	};
 
 	const removeProduct = (id) => {
-		dispatch({ type: REMOVE_PRODUCT, payload: id });
+		dispatch(removeProductAction(id));
 	};
 
 	return (
